@@ -17,12 +17,25 @@ with open(budget_csvpath, newline='') as csvfile:
   
     counter_row = 0
     total = 0
+    last_data = 0
+    first_data = 0
     # Loop through the data
     for row in csv_reader:
 
     #for row in csv_reader:
         counter_row +=1
         total += int(row[1])
-    print("Total Months: " + str(counter_row))
-    print("Total: $" + str(total))
+        if counter_row == 1:
+            first_data = int(row[1])
 
+        if counter_row == counter_row:
+            last_data = int(row[1])
+    
+    average_change = round(((last_data - first_data) / (counter_row - 1)), 2)
+    
+    print("Financial Analysis")
+    print("----------------------------")
+    
+    print("Total Months: " + str(counter_row))
+    print("Total: $" + str(total)) 
+    print("Average Changes: $" + str(average_change))
