@@ -16,26 +16,33 @@ with open(budget_csvpath, newline='') as csvfile:
     header = next(csv_reader)
   
     counter_row = 0
-    total = 0
-    last_data = 0
-    first_data = 0
+    first_data, last_data = [], []
+    profit_losses = []
+    month = []
     # Loop through the data
     for row in csv_reader:
-
-    #for row in csv_reader:
+        
         counter_row +=1
-        total += int(row[1])
+
         if counter_row == 1:
             first_data = int(row[1])
 
         if counter_row == counter_row:
             last_data = int(row[1])
-    
+
+        
+        profit_losses.append(int(row[1]))
+        month.append(str(row[0]))
     average_change = round(((last_data - first_data) / (counter_row - 1)), 2)
     
     print("Financial Analysis")
     print("----------------------------")
-    
+
     print("Total Months: " + str(counter_row))
-    print("Total: $" + str(total)) 
+    print("Total: $" + str(sum(profit_losses)))
     print("Average Changes: $" + str(average_change))
+    print("Greatest Increase in Profits: " + str(max(profit_losses)))
+    print("Greatest Decrease in Profits: " + str(min(profit_losses)))
+    
+    #print("Greteast: " + str(max(profit_losses) + str(max(month))))
+    
