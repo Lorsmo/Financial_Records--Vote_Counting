@@ -19,6 +19,7 @@ with open(budget_csvpath, newline='') as csvfile:
     first_data, last_data = [], []
     profit_losses = []
     month = []
+    Imonth = 0
     # Loop through the data
     for row in csv_reader:
         
@@ -32,9 +33,17 @@ with open(budget_csvpath, newline='') as csvfile:
 
         
         profit_losses.append(int(row[1]))
+        p = int(row[1])
+        if p == max(str(profit_losses)):
+            Imonth = row[0]
+
+
         month.append(str(row[0]))
+        
+        
     average_change = round(((last_data - first_data) / (counter_row - 1)), 2)
-    
+ 
+
     print("Financial Analysis")
     print("----------------------------")
 
@@ -43,5 +52,5 @@ with open(budget_csvpath, newline='') as csvfile:
     print("Average Changes: $" + str(average_change))
     print("Greatest Increase in Profits: " + str(max(profit_losses)))
     print("Greatest Decrease in Profits: " + str(min(profit_losses)))
-    
+    print(Imonth)
     #print("Greteast: " + str(max(profit_losses) + str(max(month))))
