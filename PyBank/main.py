@@ -38,11 +38,10 @@ with open(budget_csvpath, newline='') as csvfile:
     print("Financial Analysis")
     print("----------------------------")
 
-    print("Total Months: " + str(counter_row))
+    print("Total Months: " + str(len(month)))
     print("Total: $" + str(sum(profit_losses)))
     print("Average Changes: $" + str(average_change))
     print("Greatest Increase in Profits: " + str(max(profit_losses)))
     print("Greatest Decrease in Profits: " + str(min(profit_losses)))
     
     #print("Greteast: " + str(max(profit_losses) + str(max(month))))
-    
