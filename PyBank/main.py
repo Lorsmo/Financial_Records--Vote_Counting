@@ -19,7 +19,7 @@ with open(budget_csvpath, newline='') as csvfile:
     first_data, last_data = [], []
     profit_losses = []
     month = []
-    Imonth = 0
+    Imont = 0
     # Loop through the data
     for row in csv_reader:
         
@@ -32,12 +32,12 @@ with open(budget_csvpath, newline='') as csvfile:
             last_data = int(row[1])
 
         
+        #profit_losses.append(int(row[1]))
+        #p = int(row[1])
+        #if p == max(str(profit_losses)):
+            #Imonth = row[0]
+
         profit_losses.append(int(row[1]))
-        p = int(row[1])
-        if p == max(str(profit_losses)):
-            Imonth = row[0]
-
-
         month.append(str(row[0]))
         
         
@@ -47,10 +47,9 @@ with open(budget_csvpath, newline='') as csvfile:
     print("Financial Analysis")
     print("----------------------------")
 
-    print("Total Months: " + str(len(month)))
-    print("Total: $" + str(sum(profit_losses)))
-    print("Average Changes: $" + str(average_change))
-    print("Greatest Increase in Profits: " + str(max(profit_losses)))
-    print("Greatest Decrease in Profits: " + str(min(profit_losses)))
-    print(Imonth)
-    #print("Greteast: " + str(max(profit_losses) + str(max(month))))
+    print(f"Total Months: {len(month)}")
+    print(f"Total: ${sum(profit_losses)}")
+    print(f"Average Changes: ${average_change}")
+    print(f"Greatest Increase in Profits: {month[profit_losses.index(max(profit_losses))]}  (${max(profit_losses)})")
+    print(f"Greatest Decrease in Profits: {month[profit_losses.index(min(profit_losses))]}  (${min(profit_losses)})")
+    
