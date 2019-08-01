@@ -22,15 +22,20 @@ with open(election_csvpath, newline='') as csvfile:
 
         for candidate in candidates:
             if candidate not in candidat_list:
-                candidat_list.append(candidate)
-            
-                
+                candidat_list.append(candidate)    
 
     
     print("Election Results")
     print("----------------------")
-    print(f"Total Votes: {len(candidates)}")
+    print(f'Total Votes: {len(candidates)}')
     print("----------------------")
     for i in range (len(candidat_list)):
+        if candidates.count(candidat_list[i]) > candidates.count(candidat_list[i-1]):
+            winner = candidat_list[i]
         candidates.count(candidat_list[i])
-        print(f"{candidat_list[i]}: {candidates.count(candidat_list[i])}")
+        print(f"{candidat_list[i]}: {round((candidates.count(candidat_list[i]))/len(candidates)*100, 3)}% ({candidates.count(candidat_list[i])})")
+        #print(f"{max(candidates.count(candidat_list[i]))}")
+    print("----------------------")
+    print(f"Winner: {winner}")
+    print("----------------------")
+
