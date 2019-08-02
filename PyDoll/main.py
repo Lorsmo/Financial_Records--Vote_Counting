@@ -5,7 +5,7 @@ import os
 # Module for reading CSV files
 import csv
 
-election_csvpath = os.path.join('Resources', 'light_election_data.csv')
+election_csvpath = os.path.join('Resources', 'election_data.csv')
 
 with open(election_csvpath, newline='') as csvfile:
 
@@ -15,27 +15,25 @@ with open(election_csvpath, newline='') as csvfile:
     header = next(csv_reader)
 
     candidat_list = []
-    candidates = []
-    for row in csv_reader:
-
-        candidates.append(row[2])
-
-        for candidate in candidates:
-            if candidate not in candidat_list:
-                candidat_list.append(candidate)    
-
+    votes = []
     
-    print("Election Results")
-    print("----------------------")
-    print(f'Total Votes: {len(candidates)}')
-    print("----------------------")
-    for i in range (len(candidat_list)):
-        if candidates.count(candidat_list[i]) > candidates.count(candidat_list[i-1]):
-            winner = candidat_list[i]
-        candidates.count(candidat_list[i])
-        print(f"{candidat_list[i]}: {round((candidates.count(candidat_list[i]))/len(candidates)*100, 3)}% ({candidates.count(candidat_list[i])})")
-        #print(f"{max(candidates.count(candidat_list[i]))}")
-    print("----------------------")
-    print(f"Winner: {winner}")
-    print("----------------------")
+    for row in csv_reader:
+        
+        votes.append(str(row[2]))
+        
+        if str(row[2]) not in candidat_list:
+            candidat_list.append(str(row[2]))
+        
+print("-----------------------")  
+print("Election Results")
+print("-----------------------")
+print(f"Total Votes: {len(votes)}")
+print("-----------------------")
+for i in range (len(candidat_list)):
+    print(f"{candidat_list[i]}: {round((votes.count(candidat_list[i]))/len(votes)*100, 3)}% ({votes.count(candidat_list[i])})")
+    if votes.count(candidat_list[i]) > votes.count(candidat_list[i-1]):
+        winner = candidat_list[i]
+print("-----------------------")
+print(f"Winner: {winner}")
+print("----------------------")
 
