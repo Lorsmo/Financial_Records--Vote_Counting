@@ -23,8 +23,6 @@ with open(budget_csvpath, newline='') as csvfile:
 
     # Loop through the data
     for row in csv_reader:
-
-        sum_inc_dec = 0
         
         # Add the profit and losses
         profit_losses.append(int(row[1]))
